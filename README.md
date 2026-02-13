@@ -24,7 +24,13 @@ steps:
 
 ## Installation
 
-### Claude Code Plugin (recommended)
+### Claude Code
+
+```bash
+/plugin marketplace add jfarcand/iphone-mirroir-scenarios
+```
+
+### GitHub Copilot (VS Code)
 
 ```bash
 /plugin marketplace add jfarcand/iphone-mirroir-scenarios
