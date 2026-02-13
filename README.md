@@ -24,30 +24,27 @@ steps:
 
 ## Installation
 
-### Claude Code
+### Claude Code / GitHub Copilot
 
 ```bash
 /plugin marketplace add jfarcand/iphone-mirroir-scenarios
+/plugin install iphone-mirroir-scenarios:scenarios
 ```
 
-### GitHub Copilot (VS Code)
-
-```bash
-/plugin marketplace add jfarcand/iphone-mirroir-scenarios
-```
+This installs the [SKILL.md](skills/scenarios/SKILL.md) which teaches your AI how to interpret and execute scenario steps.
 
 ### Manual
 
 Clone into your global scenarios directory:
 
 ```bash
-git clone https://github.com/jfarcand/iphone-mirroir-scenarios ~/.iphone-mirroir-mcp/scenarios/community
+git clone https://github.com/jfarcand/iphone-mirroir-scenarios ~/.iphone-mirroir-mcp/scenarios
 ```
 
 Or into a project-local directory:
 
 ```bash
-git clone https://github.com/jfarcand/iphone-mirroir-scenarios .iphone-mirroir-mcp/scenarios/community
+git clone https://github.com/jfarcand/iphone-mirroir-scenarios .iphone-mirroir-mcp/scenarios
 ```
 
 Both paths are scanned recursively by `list_scenarios`.

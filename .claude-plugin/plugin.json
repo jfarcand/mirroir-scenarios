@@ -1,6 +1,5 @@
 {
   "name": "iphone-mirroir-scenarios",
-  "version": "0.1.0",
-  "description": "Community scenarios for iPhone Mirroring MCP — AI-driven test flows for iOS apps",
-  "skills": ["SKILL.md"]
+  "version": "1.0.0",
+  "description": "Community scenarios for iPhone Mirroring MCP — ready-made YAML workflows for automating iOS apps via AI-driven screen interaction."
 }
