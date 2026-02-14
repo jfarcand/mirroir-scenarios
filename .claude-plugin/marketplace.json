@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "iphone-mirroir-scenarios",
+  "version": "1.0.0",
+  "description": "Community scenarios for iPhone Mirroring MCP — ready-made YAML workflows for automating iOS apps via AI-driven screen interaction.",
+  "owner": {
+    "name": "Jean-Francois Arcand",
+    "email": "jfarcand@apache.org"
+  },
+  "plugins": [
+    {
+      "name": "scenarios",
+      "description": "YAML scenario execution skill — teaches the AI how to interpret and run iphone-mirroir-mcp scenarios",
+      "version": "1.0.0",
+      "source": "./plugins/scenarios",
+      "category": "automation"
+    }
+  ]
+}
