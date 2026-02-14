@@ -34,6 +34,30 @@ Scenarios are YAML files that describe multi-step iOS automation flows as **inte
 | `open_url: "https://..."` | Call `open_url` |
 | `shake: true` | Call `shake` |
 | `remember: "instruction"` | Read dynamic data from the screen and hold it in memory. Use `{NAME}` (single braces) in later steps to insert the remembered value. |
+| `condition:` | Branch based on screen state. See **Conditions** below. |
+
+## Conditions
+
+Scenarios can branch using `condition` steps. Call `describe_screen` to evaluate the condition, then execute the matching branch.
+
+```yaml
+- condition:
+    if_visible: "Label"      # or if_not_visible: "Label"
+    then:
+      - tap: "Label"
+      - screenshot: "found"
+    else:                     # optional
+      - screenshot: "not_found"
+```
+
+**How to execute:**
+
+1. Call `describe_screen` and check whether the label from `if_visible` (or `if_not_visible`) is present
+2. If the condition is **true**, execute the `then` steps sequentially
+3. If the condition is **false** and `else` is provided, execute the `else` steps
+4. If the condition is **false** and there is no `else`, skip and continue to the next step
+
+Steps inside `then` and `else` are regular steps — including nested `condition` steps if needed. Avoid nesting deeper than 2-3 levels to keep scenarios readable.
 
 ## Scenario Metadata
 

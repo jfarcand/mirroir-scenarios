@@ -90,7 +90,10 @@ VALID_STEP_TYPES = {
     "open_url",
     "shake",
     "remember",
+    "condition",
 }
+
+VALID_CONDITION_TYPES = {"if_visible", "if_not_visible"}
 
 REQUIRED_FIELDS = {"name", "app", "description", "steps"}
 
@@ -118,6 +121,84 @@ def find_scenario_files(root):
                     yield os.path.join(dirpath_walk, fname)
 
 
+def validate_condition(cond, rel, path, depth=0):
+    """Validate a condition step value. Returns (errors, has_assert)."""
+    errors = []
+    has_assert = False
+
+    if depth > 3:
+        errors.append(f"  ERROR  {rel}: condition nesting too deep at {path} (max 3 levels)")
+        return errors, has_assert
+
+    if not isinstance(cond, dict):
+        errors.append(f"  ERROR  {rel}: {path} value must be a mapping with if_visible/if_not_visible, then, and optional else")
+        return errors, has_assert
+
+    # Must have exactly one condition type
+    cond_types = [k for k in cond if k in VALID_CONDITION_TYPES]
+    if len(cond_types) == 0:
+        errors.append(f"  ERROR  {rel}: {path} must have 'if_visible' or 'if_not_visible'")
+    elif len(cond_types) > 1:
+        errors.append(f"  ERROR  {rel}: {path} must have only one of 'if_visible' or 'if_not_visible', found both")
+
+    for ct in cond_types:
+        if not isinstance(cond[ct], str) or not cond[ct].strip():
+            errors.append(f"  ERROR  {rel}: {path}.{ct} must be a non-empty string")
+
+    # Must have 'then'
+    if "then" not in cond:
+        errors.append(f"  ERROR  {rel}: {path} is missing required 'then' branch")
+    else:
+        then_steps = cond["then"]
+        if not isinstance(then_steps, list) or len(then_steps) == 0:
+            errors.append(f"  ERROR  {rel}: {path}.then must be a non-empty list of steps")
+        else:
+            step_errors, branch_assert = validate_steps(then_steps, rel, f"{path}.then", depth + 1)
+            errors.extend(step_errors)
+            has_assert = has_assert or branch_assert
+
+    # 'else' is optional
+    if "else" in cond:
+        else_steps = cond["else"]
+        if not isinstance(else_steps, list) or len(else_steps) == 0:
+            errors.append(f"  ERROR  {rel}: {path}.else must be a non-empty list of steps")
+        else:
+            step_errors, branch_assert = validate_steps(else_steps, rel, f"{path}.else", depth + 1)
+            errors.extend(step_errors)
+            has_assert = has_assert or branch_assert
+
+    # Check for unknown keys
+    allowed_keys = VALID_CONDITION_TYPES | {"then", "else"}
+    for key in cond:
+        if key not in allowed_keys:
+            errors.append(f"  ERROR  {rel}: {path} has unknown key '{key}'")
+
+    return errors, has_assert
+
+
+def validate_steps(steps, rel, prefix, depth=0):
+    """Validate a list of steps. Returns (errors, has_assert)."""
+    errors = []
+    has_assert = False
+
+    for i, step in enumerate(steps):
+        step_label = f"{prefix} {i + 1}"
+        if not isinstance(step, dict):
+            errors.append(f"  ERROR  {rel}: {step_label} is not a mapping")
+            continue
+        for step_type in step:
+            if step_type not in VALID_STEP_TYPES:
+                errors.append(f"  ERROR  {rel}: unknown step type '{step_type}' at {step_label}")
+            if step_type in ("assert_visible", "assert_not_visible"):
+                has_assert = True
+            if step_type == "condition":
+                cond_errors, cond_assert = validate_condition(step[step_type], rel, step_label + " condition", depth)
+                errors.extend(cond_errors)
+                has_assert = has_assert or cond_assert
+
+    return errors, has_assert
+
+
 def validate_file(filepath, root):
     """Validate a single scenario file. Returns (errors, warnings) lists."""
     errors = []
@@ -142,16 +223,8 @@ def validate_file(filepath, root):
     # --- Steps validation ---
     steps = data.get("steps", [])
     if isinstance(steps, list):
-        has_assert = False
-        for i, step in enumerate(steps):
-            if not isinstance(step, dict):
-                errors.append(f"  ERROR  {rel}: step {i + 1} is not a mapping")
-                continue
-            for step_type in step:
-                if step_type not in VALID_STEP_TYPES:
-                    errors.append(f"  ERROR  {rel}: unknown step type '{step_type}' at step {i + 1}")
-                if step_type in ("assert_visible", "assert_not_visible"):
-                    has_assert = True
+        step_errors, has_assert = validate_steps(steps, rel, "step")
+        errors.extend(step_errors)
 
         if not has_assert:
             warnings.append(f"  WARN   {rel}: no assert_visible or assert_not_visible step")

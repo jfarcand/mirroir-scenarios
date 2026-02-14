@@ -86,6 +86,7 @@ Both paths are scanned recursively by `list_scenarios`.
 | `workflows/commute-eta-notify` | Get ETA from Waze, send it to your boss via Messages |
 | `workflows/standup-autoposter` | Read today's meetings from Calendar, post standup to Slack |
 | `workflows/qa-smoke-pack` | Smoke test a mobile app via Expo Go with screenshots at each checkpoint |
+| `workflows/email-triage` | Check inbox for unread email — archive or flag based on content |
 
 Workflows demonstrate **cross-app data extraction** — the AI reads dynamic content from one app and composes it into actions in another. This is something only an AI executor can do.
 
@@ -104,6 +105,31 @@ direnv allow
 ```
 
 Unresolved variables without defaults are left as-is — the AI will ask for values before proceeding.
+
+## Conditions
+
+Scenarios support branching with `condition` steps. The AI checks the screen and executes the matching branch:
+
+```yaml
+steps:
+  - launch: "Mail"
+  - wait_for: "Inbox"
+  - condition:
+      if_visible: "Unread"
+      then:
+        - tap: "Unread"
+        - tap: "Archive"
+        - assert_visible: "Archived"
+      else:
+        - screenshot: "empty_inbox"
+```
+
+A condition step has:
+- **`if_visible`** or **`if_not_visible`** — the label to check on screen
+- **`then`** (required) — steps to run when the condition is true
+- **`else`** (optional) — steps to run when the condition is false
+
+Steps inside branches are regular steps, including nested conditions. See `workflows/email-triage.yaml` for a full example.
 
 ## Validation
 

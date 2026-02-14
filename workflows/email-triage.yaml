@@ -1,0 +1,31 @@
+name: Email Triage
+app: Mail
+description: >
+  Check inbox for unread email and triage it. If an unread email
+  exists, open it and decide whether to flag or archive based on
+  content. If the inbox is empty, take a screenshot and exit.
+  Demonstrates conditional branching with nested conditions.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["mail", "workflow", "conditional", "triage"]
+
+steps:
+  - launch: "Mail"
+  - wait_for: "Inbox"
+  - condition:
+      if_visible: "Unread"
+      then:
+        - tap: "Unread"
+        - wait_for: "From"
+        - remember: "Read the sender name and subject line of this email."
+        - condition:
+            if_visible: "Urgent"
+            then:
+              - tap: "Flag"
+              - assert_visible: "Flagged"
+              - screenshot: "flagged_urgent"
+            else:
+              - tap: "Archive"
+              - screenshot: "archived"
+      else:
+        - screenshot: "empty_inbox"
