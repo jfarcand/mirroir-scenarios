@@ -117,6 +117,12 @@ This runs automatically on push and PR via GitHub Actions.
 
 ## Contributing
 
+Contributions are welcome! By submitting a pull request or patch, you agree to the [Contributor License Agreement](CLA.md). Your Git commit metadata (name and email) serves as your electronic signature — no separate form to sign.
+
+The CLA ensures the project can be maintained long-term under a consistent license. You retain full ownership of your contributions — the CLA simply grants the maintainer the right to distribute them as part of the project.
+
+### How to contribute
+
 1. Fork this repository
 2. Create your scenario in the appropriate directory:
    - `apps/<app-name>/` for iOS app automation
@@ -145,4 +151,4 @@ This runs automatically on push and PR via GitHub Actions.
 
 ## License
 
-Apache 2.0 — see [LICENSE](LICENSE).
+Apache 2.0 — see [LICENSE](LICENSE). See [CLA](CLA.md) for contributor terms.
