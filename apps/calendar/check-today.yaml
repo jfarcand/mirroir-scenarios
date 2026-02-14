@@ -6,4 +6,5 @@ steps:
   - launch: "Calendar"
   - wait_for: "Calendar"
   - tap: "Today"
+  - assert_visible: "Today"
   - screenshot: "todays_schedule"

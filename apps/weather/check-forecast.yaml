@@ -8,4 +8,5 @@ steps:
   - screenshot: "current_weather"
   - swipe: "up"
   - wait_for: "10-Day Forecast"
+  - assert_visible: "10-Day Forecast"
   - screenshot: "ten_day_forecast"

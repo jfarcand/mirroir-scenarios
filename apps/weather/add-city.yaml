@@ -13,4 +13,5 @@ steps:
   - tap: "${CITY:-Montreal}"
   - wait_for: "Add"
   - tap: "Add"
+  - assert_visible: "${CITY:-Montreal}"
   - screenshot: "city_added"

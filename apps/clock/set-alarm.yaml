@@ -11,4 +11,5 @@ steps:
   - tap: "Label"
   - type: "${ALARM_LABEL:-Wake Up}"
   - tap: "Save"
+  - assert_visible: "${ALARM_LABEL:-Wake Up}"
   - screenshot: "alarm_created"

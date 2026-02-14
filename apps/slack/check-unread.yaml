@@ -7,4 +7,5 @@ steps:
   - wait_for: "Home"
   - tap: "Activity"
   - wait_for: "Activity"
+  - assert_visible: "Activity"
   - screenshot: "unread_activity"

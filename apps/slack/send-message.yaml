@@ -12,4 +12,5 @@ steps:
   - tap: "Message"
   - type: "${MESSAGE:-Hey, just checking in!}"
   - press_key: "return"
+  - assert_visible: "${MESSAGE:-Hey, just checking in!}"
   - screenshot: "message_sent"
