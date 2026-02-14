@@ -96,6 +96,16 @@ direnv allow
 
 Unresolved variables without defaults are left as-is — the AI will ask for values before proceeding.
 
+## Validation
+
+Run the validation script to check all scenarios for required fields, valid step types, and correct variable syntax:
+
+```bash
+python3 scripts/validate-scenarios.py
+```
+
+This runs automatically on push and PR via GitHub Actions.
+
 ## Contributing
 
 1. Fork this repository
