@@ -1,6 +1,9 @@
 name: Expo Go Login Flow
 app: Expo Go
 description: Test the login screen of an Expo Go app with valid credentials
+ios_min: "17.0"
+locale: "en_US"
+tags: ["testing", "expo", "authentication"]
 
 steps:
   - launch: "Expo Go"

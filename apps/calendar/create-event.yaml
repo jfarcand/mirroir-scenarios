@@ -1,6 +1,9 @@
 name: Create Calendar Event
 app: Calendar
 description: Create a new event in the iOS Calendar app
+ios_min: "17.0"
+locale: "en_US"
+tags: ["calendar", "create", "productivity"]
 
 steps:
   - launch: "Calendar"

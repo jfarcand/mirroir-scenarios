@@ -1,6 +1,9 @@
 name: Check Today's Schedule
 app: Calendar
 description: Open Calendar and view today's events
+ios_min: "17.0"
+locale: "en_US"
+tags: ["calendar", "read-only", "quick-check"]
 
 steps:
   - launch: "Calendar"

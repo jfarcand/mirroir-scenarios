@@ -1,6 +1,9 @@
 name: Set Alarm
 app: Clock
 description: Create a new alarm in the Clock app
+ios_min: "17.0"
+locale: "en_US"
+tags: ["clock", "alarm", "create"]
 
 steps:
   - launch: "Clock"

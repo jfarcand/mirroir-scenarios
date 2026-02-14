@@ -1,6 +1,9 @@
 name: Add City to Weather
 app: Weather
 description: Search for and add a city to the Weather app
+ios_min: "17.0"
+locale: "en_US"
+tags: ["weather", "create"]
 
 steps:
   - launch: "Weather"

@@ -16,6 +16,9 @@ description: >
     hyphen (-) instead.
   - The compose and send buttons in Messages are icon-only (no OCR text).
     Use "New Message" for compose and press_key return to send.
+ios_min: "17.0"
+locale: "fr_CA"
+tags: ["workflow", "cross-app", "waze", "messages", "commute"]
 
 steps:
   # --- Waze: get the ETA ---

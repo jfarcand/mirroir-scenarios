@@ -1,6 +1,9 @@
 name: Send Slack Message
 app: Slack
 description: Send a direct message to a contact in Slack
+ios_min: "17.0"
+locale: "en_US"
+tags: ["slack", "messaging", "create"]
 
 steps:
   - launch: "Slack"

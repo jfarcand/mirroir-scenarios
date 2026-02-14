@@ -1,6 +1,9 @@
 name: Check About Screen
 app: Settings
 description: Navigate through Settings to General > About and verify device info
+ios_min: "17.0"
+locale: "en_US"
+tags: ["settings", "device-info", "read-only"]
 
 steps:
   - launch: "Settings"

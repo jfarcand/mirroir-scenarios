@@ -1,6 +1,9 @@
 name: Set Timer
 app: Clock
 description: Start a countdown timer in the Clock app
+ios_min: "17.0"
+locale: "en_US"
+tags: ["clock", "timer", "quick-check"]
 
 steps:
   - launch: "Clock"

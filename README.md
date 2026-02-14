@@ -118,7 +118,9 @@ This runs automatically on push and PR via GitHub Actions.
    name: Human-readable name
    app: App Name
    description: What this scenario does
-   ios_min: "17.0"  # optional
+   ios_min: "17.0"
+   locale: "en_US"
+   tags: ["app-name", "category", "action-type"]
 
    steps:
      - launch: "App Name"

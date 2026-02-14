@@ -1,6 +1,9 @@
 name: Expo Go Debug Menu
 app: Expo Go
 description: Open the React Native debug menu via shake gesture in Expo Go
+ios_min: "17.0"
+locale: "en_US"
+tags: ["testing", "expo", "debug"]
 
 steps:
   - launch: "Expo Go"

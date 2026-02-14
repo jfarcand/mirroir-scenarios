@@ -35,6 +35,16 @@ Scenarios are YAML files that describe multi-step iOS automation flows as **inte
 | `shake: true` | Call `shake` |
 | `remember: "instruction"` | Read dynamic data from the screen and hold it in memory. Use `{NAME}` (single braces) in later steps to insert the remembered value. |
 
+## Scenario Metadata
+
+Scenarios may include optional metadata fields between `description:` and `steps:`:
+
+| Field | Purpose |
+|-------|---------|
+| `ios_min` | Minimum iOS version (e.g. `"17.0"`). Skip the scenario if the device is below this version. |
+| `locale` | Expected locale (e.g. `"en_US"`, `"fr_CA"`). Adapt UI labels if the phone's locale differs. |
+| `tags` | List of strings for discovery (e.g. `["calendar", "create"]`). Used for filtering, not execution. |
+
 ## Variable Substitution
 
 `${VAR}` placeholders are resolved from environment variables by `get_scenario`. `${VAR:-default}` provides a fallback. If you see unresolved `${VAR}` in the loaded scenario, ask the user for the value before proceeding.

@@ -1,6 +1,9 @@
 name: Check Unread Slack Messages
 app: Slack
 description: Open Slack and check unread messages across channels
+ios_min: "17.0"
+locale: "en_US"
+tags: ["slack", "messaging", "read-only"]
 
 steps:
   - launch: "Slack"

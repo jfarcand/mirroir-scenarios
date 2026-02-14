@@ -1,6 +1,9 @@
 name: Check Weather Forecast
 app: Weather
 description: Open Weather and check the forecast for the current location
+ios_min: "17.0"
+locale: "en_US"
+tags: ["weather", "read-only", "quick-check"]
 
 steps:
   - launch: "Weather"
