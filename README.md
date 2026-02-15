@@ -87,6 +87,7 @@ Both paths are scanned recursively by `list_scenarios`.
 | `workflows/standup-autoposter` | Read today's meetings from Calendar, post standup to Slack |
 | `workflows/qa-smoke-pack` | Smoke test a mobile app via Expo Go with screenshots at each checkpoint |
 | `workflows/email-triage` | Check inbox for unread email — archive or flag based on content |
+| `workflows/batch-archive` | Archive all unread emails in a loop until inbox is empty |
 
 Workflows demonstrate **cross-app data extraction** — the AI reads dynamic content from one app and composes it into actions in another. This is something only an AI executor can do.
 
@@ -130,6 +131,31 @@ A condition step has:
 - **`else`** (optional) — steps to run when the condition is false
 
 Steps inside branches are regular steps, including nested conditions. See `workflows/email-triage.yaml` for a full example.
+
+## Repeats
+
+Scenarios support loops with `repeat` steps. The AI checks a screen condition before each iteration:
+
+```yaml
+steps:
+  - launch: "Mail"
+  - wait_for: "Inbox"
+  - repeat:
+      while_visible: "Unread"
+      max: 10
+      steps:
+        - tap: "Unread"
+        - tap: "Archive"
+        - tap: "< Back"
+        - wait_for: "Inbox"
+```
+
+A repeat step has:
+- **Loop mode** (exactly one): `while_visible`, `until_visible`, or `times`
+- **`max`** (required) — safety bound to prevent infinite loops
+- **`steps`** (required) — steps to run each iteration
+
+See `workflows/batch-archive.yaml` for a full example.
 
 ## Validation
 

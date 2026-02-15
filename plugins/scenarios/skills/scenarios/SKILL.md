@@ -35,6 +35,7 @@ Scenarios are YAML files that describe multi-step iOS automation flows as **inte
 | `shake: true` | Call `shake` |
 | `remember: "instruction"` | Read dynamic data from the screen and hold it in memory. Use `{NAME}` (single braces) in later steps to insert the remembered value. |
 | `condition:` | Branch based on screen state. See **Conditions** below. |
+| `repeat:` | Loop over steps until a screen condition is met. See **Repeats** below. |
 
 ## Conditions
 
@@ -58,6 +59,34 @@ Scenarios can branch using `condition` steps. Call `describe_screen` to evaluate
 4. If the condition is **false** and there is no `else`, skip and continue to the next step
 
 Steps inside `then` and `else` are regular steps — including nested `condition` steps if needed. Avoid nesting deeper than 2-3 levels to keep scenarios readable.
+
+## Repeats
+
+Scenarios can loop using `repeat` steps. The AI checks a screen condition before each iteration and stops when the condition fails or `max` iterations are reached.
+
+```yaml
+- repeat:
+    while_visible: "Unread"     # keep going while element is on screen
+    max: 10                      # required safety bound
+    steps:
+      - tap: "Unread"
+      - tap: "Archive"
+      - tap: "< Back"
+```
+
+**Loop modes** (use exactly one):
+- `while_visible: "Label"` — continue while the label is on screen
+- `until_visible: "Label"` — continue until the label appears
+- `times: N` — repeat exactly N times (no screen check)
+
+**How to execute:**
+
+1. Before each iteration, call `describe_screen` and evaluate the loop condition (`while_visible` or `until_visible`). For `times`, just count.
+2. If the condition allows another iteration **and** `max` is not reached, execute the `steps` sequentially
+3. After the steps complete, go back to step 1
+4. When the condition fails or `max` is reached, stop and continue to the next step after the repeat
+
+Steps inside `repeat` are regular steps — including `condition` and nested `repeat` if needed.
 
 ## Scenario Metadata
 

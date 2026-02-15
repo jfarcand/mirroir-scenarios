@@ -1,0 +1,30 @@
+name: Batch Archive Inbox
+app: Mail
+description: >
+  Archive all unread emails in a loop. Opens each unread email,
+  archives it, returns to the inbox, and repeats until no unread
+  emails remain. Demonstrates the repeat step with while_visible
+  and nested condition for handling edge cases.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["mail", "workflow", "repeat", "batch"]
+
+steps:
+  - launch: "Mail"
+  - wait_for: "Inbox"
+  - repeat:
+      while_visible: "Unread"
+      max: 20
+      steps:
+        - tap: "Unread"
+        - wait_for: "From"
+        - condition:
+            if_visible: "Flagged"
+            then:
+              - screenshot: "skipped_flagged"
+              - tap: "< Back"
+            else:
+              - tap: "Archive"
+        - wait_for: "Inbox"
+  - screenshot: "inbox_clean"
+  - assert_not_visible: "Unread"

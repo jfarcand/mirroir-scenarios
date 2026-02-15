@@ -91,9 +91,11 @@ VALID_STEP_TYPES = {
     "shake",
     "remember",
     "condition",
+    "repeat",
 }
 
 VALID_CONDITION_TYPES = {"if_visible", "if_not_visible"}
+VALID_REPEAT_MODES = {"while_visible", "until_visible", "times"}
 
 REQUIRED_FIELDS = {"name", "app", "description", "steps"}
 
@@ -176,6 +178,62 @@ def validate_condition(cond, rel, path, depth=0):
     return errors, has_assert
 
 
+def validate_repeat(rep, rel, path, depth=0):
+    """Validate a repeat step value. Returns (errors, has_assert)."""
+    errors = []
+    has_assert = False
+
+    if depth > 3:
+        errors.append(f"  ERROR  {rel}: repeat nesting too deep at {path} (max 3 levels)")
+        return errors, has_assert
+
+    if not isinstance(rep, dict):
+        errors.append(f"  ERROR  {rel}: {path} value must be a mapping with a loop mode, max, and steps")
+        return errors, has_assert
+
+    # Must have exactly one loop mode
+    modes = [k for k in rep if k in VALID_REPEAT_MODES]
+    if len(modes) == 0:
+        errors.append(f"  ERROR  {rel}: {path} must have one of: while_visible, until_visible, times")
+    elif len(modes) > 1:
+        errors.append(f"  ERROR  {rel}: {path} must have only one of: while_visible, until_visible, times (found {', '.join(modes)})")
+
+    for mode in modes:
+        if mode == "times":
+            if not isinstance(rep[mode], int) or rep[mode] < 1:
+                errors.append(f"  ERROR  {rel}: {path}.times must be a positive integer")
+        else:
+            if not isinstance(rep[mode], str) or not rep[mode].strip():
+                errors.append(f"  ERROR  {rel}: {path}.{mode} must be a non-empty string")
+
+    # Must have 'max' safety bound
+    if "max" not in rep:
+        errors.append(f"  ERROR  {rel}: {path} is missing required 'max' safety bound")
+    else:
+        if not isinstance(rep["max"], int) or rep["max"] < 1:
+            errors.append(f"  ERROR  {rel}: {path}.max must be a positive integer")
+
+    # Must have 'steps'
+    if "steps" not in rep:
+        errors.append(f"  ERROR  {rel}: {path} is missing required 'steps' list")
+    else:
+        rep_steps = rep["steps"]
+        if not isinstance(rep_steps, list) or len(rep_steps) == 0:
+            errors.append(f"  ERROR  {rel}: {path}.steps must be a non-empty list of steps")
+        else:
+            step_errors, branch_assert = validate_steps(rep_steps, rel, f"{path}.steps", depth + 1)
+            errors.extend(step_errors)
+            has_assert = has_assert or branch_assert
+
+    # Check for unknown keys
+    allowed_keys = VALID_REPEAT_MODES | {"max", "steps"}
+    for key in rep:
+        if key not in allowed_keys:
+            errors.append(f"  ERROR  {rel}: {path} has unknown key '{key}'")
+
+    return errors, has_assert
+
+
 def validate_steps(steps, rel, prefix, depth=0):
     """Validate a list of steps. Returns (errors, has_assert)."""
     errors = []
@@ -195,6 +253,10 @@ def validate_steps(steps, rel, prefix, depth=0):
                 cond_errors, cond_assert = validate_condition(step[step_type], rel, step_label + " condition", depth)
                 errors.extend(cond_errors)
                 has_assert = has_assert or cond_assert
+            if step_type == "repeat":
+                rep_errors, rep_assert = validate_repeat(step[step_type], rel, step_label + " repeat", depth)
+                errors.extend(rep_errors)
+                has_assert = has_assert or rep_assert
 
     return errors, has_assert
 
