@@ -1,0 +1,22 @@
+name: Get Directions and Travel Time
+app: Maps
+description: >
+  Search for a destination in Maps, get directions, and extract
+  the estimated travel time. The AI reads dynamic routing data
+  from the screen — no Maps API needed.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["maps", "navigation", "read-only", "remember"]
+
+steps:
+  - launch: "Maps"
+  - wait_for: "Search Maps"
+  - tap: "Search Maps"
+  - type: "${DESTINATION:-Central Park}"
+  - wait_for: "${DESTINATION:-Central Park}"
+  - tap: "${DESTINATION:-Central Park}"
+  - wait_for: "Directions"
+  - tap: "Directions"
+  - wait_for: "min"
+  - remember: "Read the estimated travel time, distance, and route summary for each transportation mode shown."
+  - screenshot: "directions"

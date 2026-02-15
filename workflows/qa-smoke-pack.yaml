@@ -1,12 +1,13 @@
-name: Mobile QA Smoke Pack
+name: Visual Regression Test
 app: Expo Go
 description: >
-  Quick smoke test for a mobile app via Expo Go. Launches the app,
-  verifies the home screen loads, navigates key screens, and captures
-  screenshots at each checkpoint. Template for CI screenshot capture.
+  Capture screenshots of key app screens for visual regression
+  testing. Navigates a configurable path through the app, capturing
+  and describing each screen. Uses remember to detect unexpected
+  UI changes — something traditional screenshot diffing can't do.
 ios_min: "17.0"
 locale: "en_US"
-tags: ["workflow", "testing", "expo", "qa", "smoke-test", "screenshots"]
+tags: ["testing", "qa", "screenshots", "remember", "regression"]
 
 steps:
   - launch: "Expo Go"
@@ -14,16 +15,13 @@ steps:
   - tap: "${APP_SCREEN:-Home}"
   - wait_for: "${LANDING_LABEL:-Welcome}"
   - assert_visible: "${LANDING_LABEL:-Welcome}"
-  - screenshot: "smoke_01_landing"
+  - remember: "Describe the landing screen layout — note all visible elements, their positions, and any error indicators."
+  - screenshot: "regression_01_landing"
   - tap: "${SCREEN_1_TAP:-Profile}"
   - wait_for: "${SCREEN_1_LABEL:-Profile}"
-  - assert_visible: "${SCREEN_1_LABEL:-Profile}"
-  - screenshot: "smoke_02_screen1"
+  - remember: "Describe the screen layout and compare with expected elements: navigation bar, content area, any error states."
+  - screenshot: "regression_02_profile"
   - tap: "${SCREEN_2_TAP:-Settings}"
   - wait_for: "${SCREEN_2_LABEL:-Settings}"
-  - assert_visible: "${SCREEN_2_LABEL:-Settings}"
-  - screenshot: "smoke_03_screen2"
-  - tap: "${LANDING_TAP:-Home}"
-  - wait_for: "${LANDING_LABEL:-Welcome}"
-  - assert_visible: "${LANDING_LABEL:-Welcome}"
-  - screenshot: "smoke_04_return"
+  - remember: "Check for any visual anomalies — missing icons, truncated text, layout overflow, or unexpected empty states."
+  - screenshot: "regression_03_settings"

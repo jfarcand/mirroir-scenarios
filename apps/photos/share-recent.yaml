@@ -1,0 +1,27 @@
+name: Share Recent Photo
+app: Photos, Messages
+description: >
+  Open the most recent photo, long-press to access the share menu,
+  and send it via Messages. Demonstrates the long_press gesture
+  and cross-app sharing flow.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["photos", "sharing", "long-press", "cross-app"]
+
+steps:
+  - launch: "Photos"
+  - wait_for: "Library"
+  - tap: "Recents"
+  - wait_for: "Recents"
+  - long_press: "recent_photo"
+  - wait_for: "Share"
+  - tap: "Share"
+  - wait_for: "Messages"
+  - tap: "Messages"
+  - wait_for: "To:"
+  - tap: "To:"
+  - type: "${RECIPIENT}"
+  - wait_for: "${RECIPIENT}"
+  - tap: "${RECIPIENT}"
+  - tap: "Send"
+  - screenshot: "photo_shared"

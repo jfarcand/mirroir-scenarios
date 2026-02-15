@@ -79,6 +79,7 @@ except ImportError:
 VALID_STEP_TYPES = {
     "launch",
     "tap",
+    "long_press",
     "type",
     "swipe",
     "wait_for",

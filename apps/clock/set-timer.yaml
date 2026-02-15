@@ -1,6 +1,9 @@
 name: Set Timer
 app: Clock
-description: Start a countdown timer in the Clock app
+description: >
+  Start a countdown timer in the Clock app. Navigates to the Timer
+  tab, starts the default timer, and verifies it's running by
+  checking for the Pause button.
 ios_min: "17.0"
 locale: "en_US"
 tags: ["clock", "timer", "quick-check"]
@@ -11,5 +14,6 @@ steps:
   - tap: "Timer"
   - wait_for: "Start"
   - tap: "Start"
+  - wait_for: "Pause"
   - assert_visible: "Pause"
   - screenshot: "timer_running"

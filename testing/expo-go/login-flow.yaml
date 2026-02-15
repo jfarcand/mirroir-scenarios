@@ -1,9 +1,12 @@
 name: Expo Go Login Flow
 app: Expo Go
-description: Test the login screen of an Expo Go app with valid credentials
+description: >
+  Test the login screen of an Expo Go app. Handles both fresh
+  signup and existing account cases using conditional branching —
+  the AI adapts to whichever state it encounters.
 ios_min: "17.0"
 locale: "en_US"
-tags: ["testing", "expo", "authentication"]
+tags: ["testing", "expo", "authentication", "conditional"]
 
 steps:
   - launch: "Expo Go"
@@ -15,5 +18,17 @@ steps:
   - tap: "Password"
   - type: "${TEST_PASSWORD}"
   - tap: "Sign In"
+  - condition:
+      if_visible: "Invalid"
+      then:
+        - screenshot: "login_failed"
+        - tap: "Sign Up"
+        - tap: "Email"
+        - type: "${TEST_EMAIL}"
+        - tap: "Password"
+        - type: "${TEST_PASSWORD}"
+        - tap: "Create Account"
+      else:
+        - wait_for: "Welcome"
   - assert_visible: "Welcome"
   - screenshot: "login_success"

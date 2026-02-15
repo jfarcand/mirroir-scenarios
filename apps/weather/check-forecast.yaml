@@ -1,15 +1,19 @@
-name: Check Weather Forecast
+name: Read Weather Forecast
 app: Weather
-description: Open Weather and check the forecast for the current location
+description: >
+  Open Weather and extract current conditions and the 10-day
+  forecast. The AI reads temperature, conditions, and daily
+  highs/lows from the screen — no Weather API key needed.
 ios_min: "17.0"
 locale: "en_US"
-tags: ["weather", "read-only", "quick-check"]
+tags: ["weather", "read-only", "remember"]
 
 steps:
   - launch: "Weather"
   - wait_for: "Weather"
+  - remember: "Read the current temperature, conditions (sunny/cloudy/rainy), and location name."
   - screenshot: "current_weather"
   - swipe: "up"
   - wait_for: "10-Day Forecast"
-  - assert_visible: "10-Day Forecast"
+  - remember: "Read the 10-day forecast — for each day, note the high, low, and conditions."
   - screenshot: "ten_day_forecast"

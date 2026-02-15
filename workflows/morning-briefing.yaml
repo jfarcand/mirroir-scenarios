@@ -1,0 +1,37 @@
+name: Morning Briefing
+app: Weather, Calendar, Messages
+description: >
+  Check the weather, read today's schedule, and send a morning
+  summary via iMessage. The AI reads live data from two apps and
+  composes a natural-language briefing — something only an AI
+  executor can do. No APIs, no integrations, just screen reading.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["workflow", "cross-app", "weather", "calendar", "messages", "productivity"]
+
+steps:
+  - launch: "Weather"
+  - wait_for: "Weather"
+  - remember: "Read the current temperature, conditions, and high/low for today."
+  - screenshot: "weather_check"
+  - press_home: true
+  - launch: "Calendar"
+  - wait_for: "Calendar"
+  - tap: "Today"
+  - wait_for: "Today"
+  - remember: "Read all event titles and times from today's calendar."
+  - screenshot: "calendar_check"
+  - press_home: true
+  - launch: "Messages"
+  - wait_for: "Messages"
+  - tap: "New Message"
+  - wait_for: "To:"
+  - tap: "To:"
+  - type: "${RECIPIENT}"
+  - wait_for: "${RECIPIENT}"
+  - tap: "${RECIPIENT}"
+  - wait_for: "iMessage"
+  - tap: "iMessage"
+  - type: "Morning briefing: {weather}. Today's schedule: {meetings}"
+  - press_key: "return"
+  - screenshot: "briefing_sent"

@@ -1,13 +1,17 @@
-name: Check Today's Schedule
+name: Read Today's Schedule
 app: Calendar
-description: Open Calendar and view today's events
+description: >
+  Open Calendar, view today's events, and extract meeting details.
+  Uses remember to read event titles and times from the screen —
+  the AI interprets dynamic calendar content, not fixed coordinates.
 ios_min: "17.0"
 locale: "en_US"
-tags: ["calendar", "read-only", "quick-check"]
+tags: ["calendar", "read-only", "remember"]
 
 steps:
   - launch: "Calendar"
   - wait_for: "Calendar"
   - tap: "Today"
-  - assert_visible: "Today"
+  - wait_for: "Today"
+  - remember: "Read all visible event titles and their times from today's calendar view."
   - screenshot: "todays_schedule"

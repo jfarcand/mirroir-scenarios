@@ -1,9 +1,12 @@
-name: Check About Screen
+name: Read Device Info
 app: Settings
-description: Navigate through Settings to General > About and verify device info
+description: >
+  Navigate to Settings > General > About and extract device
+  information. The AI reads model name, iOS version, and storage
+  from the screen — useful for automated inventory or support tickets.
 ios_min: "17.0"
 locale: "en_US"
-tags: ["settings", "device-info", "read-only"]
+tags: ["settings", "device-info", "read-only", "remember"]
 
 steps:
   - launch: "Settings"
@@ -11,5 +14,7 @@ steps:
   - tap: "General"
   - wait_for: "About"
   - tap: "About"
+  - wait_for: "Model Name"
+  - remember: "Read the device model name, iOS version, and available storage capacity."
   - assert_visible: "Model Name"
-  - screenshot: "about_screen"
+  - screenshot: "device_info"

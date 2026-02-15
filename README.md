@@ -63,29 +63,32 @@ Both paths are scanned recursively by `list_scenarios`.
 | Scenario | Description |
 |----------|-------------|
 | `apps/calendar/create-event` | Create a new calendar event |
-| `apps/calendar/check-today` | View today's schedule |
+| `apps/calendar/check-today` | Read today's events using `remember` to extract meeting details |
 | `apps/clock/set-alarm` | Create a new alarm |
-| `apps/clock/set-timer` | Start a countdown timer |
-| `apps/settings/check-about` | Navigate to Settings > About |
+| `apps/clock/set-timer` | Start a countdown timer and verify it's running |
+| `apps/maps/save-directions` | Search for a destination, get directions, extract travel time with `remember` |
+| `apps/photos/share-recent` | Long-press a recent photo and share it via Messages |
+| `apps/settings/check-about` | Extract device model, iOS version, and storage via `remember` |
 | `apps/slack/send-message` | Send a DM to a contact |
-| `apps/slack/check-unread` | Check Slack activity feed |
-| `apps/weather/check-forecast` | View current weather and 10-day forecast |
+| `apps/slack/check-unread` | Read unread notifications with channel names and message previews |
+| `apps/weather/check-forecast` | Extract current conditions and 10-day forecast with `remember` |
 | `apps/weather/add-city` | Add a city to Weather |
 
 ### Testing
 
 | Scenario | Description |
 |----------|-------------|
-| `testing/expo-go/login-flow` | Test login screen with credentials |
+| `testing/expo-go/login-flow` | Test login with conditional branching for signup vs existing account |
 | `testing/expo-go/shake-debug-menu` | Open React Native debug menu via shake |
 
 ### Workflows
 
 | Scenario | Description |
 |----------|-------------|
+| `workflows/morning-briefing` | Read weather + calendar, compose and send a morning summary via iMessage |
 | `workflows/commute-eta-notify` | Get ETA from Waze, send it to your boss via Messages |
 | `workflows/standup-autoposter` | Read today's meetings from Calendar, post standup to Slack |
-| `workflows/qa-smoke-pack` | Smoke test a mobile app via Expo Go with screenshots at each checkpoint |
+| `workflows/qa-smoke-pack` | Visual regression test — screenshot key screens and use `remember` to detect UI anomalies |
 | `workflows/email-triage` | Check inbox for unread email — archive or flag based on content |
 | `workflows/batch-archive` | Archive all unread emails in a loop until inbox is empty |
 

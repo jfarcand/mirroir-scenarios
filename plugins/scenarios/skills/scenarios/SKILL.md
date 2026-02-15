@@ -23,6 +23,7 @@ Scenarios are YAML files that describe multi-step iOS automation flows as **inte
 |------|----------------|
 | `launch: "App"` | Call `launch_app` |
 | `tap: "Label"` | Call `describe_screen` to find the element, then `tap` at its coordinates |
+| `long_press: "Label"` | Call `describe_screen` to find the element, then `long_press` at its coordinates |
 | `type: "text"` | Call `type_text` |
 | `swipe: "up"` | Call `swipe` with appropriate coordinates based on screen size |
 | `wait_for: "Label"` | Poll `describe_screen` until the element appears (retry with short delays) |
