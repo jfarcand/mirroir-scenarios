@@ -1,0 +1,32 @@
+name: Install App from App Store
+app: App Store
+description: >
+  Search for an app in the App Store and install it. The AI handles
+  dynamic UI — search results, GET vs price button, download progress,
+  and authentication prompts. Uses condition to adapt to whether the
+  app is free, paid, or already installed.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["appstore", "install", "conditional"]
+
+steps:
+  - launch: "App Store"
+  - wait_for: "Search"
+  - tap: "Search"
+  - wait_for: "Search"
+  - tap: "Search"
+  - type: "${APP_NAME}"
+  - press_key: "return"
+  - wait_for: "${APP_NAME}"
+  - tap: "${APP_NAME}"
+  - wait_for: "GET"
+  - condition:
+      if_visible: "OPEN"
+      then:
+        - remember: "App is already installed. Note the current version."
+        - screenshot: "already_installed"
+      else:
+        - tap: "GET"
+        - wait_for: "OPEN"
+        - assert_visible: "OPEN"
+        - screenshot: "install_complete"

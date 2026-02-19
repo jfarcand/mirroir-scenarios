@@ -1,0 +1,25 @@
+name: List Installed Apps
+app: Settings
+description: >
+  Navigate to Settings > General > iPhone Storage and read the list
+  of installed apps with their sizes. Uses remember to extract app
+  names from the screen and scrolls to capture the full list.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["settings", "apps", "read-only", "remember", "inventory"]
+
+steps:
+  - launch: "Settings"
+  - wait_for: "General"
+  - tap: "General"
+  - wait_for: "iPhone Storage"
+  - tap: "iPhone Storage"
+  - wait_for: "iPhone Storage"
+  - remember: "Read all visible app names and their storage sizes from the list."
+  - screenshot: "app_list_page1"
+  - swipe: "up"
+  - remember: "Read all visible app names and sizes. Note any new apps not seen on the previous screen."
+  - screenshot: "app_list_page2"
+  - swipe: "up"
+  - remember: "Read any remaining app names and sizes. Compile the full list from all pages."
+  - screenshot: "app_list_page3"

@@ -1,0 +1,25 @@
+name: Uninstall App
+app: Settings
+description: >
+  Remove an app via Settings > General > iPhone Storage. More
+  reliable than the home screen long-press method because the
+  app list is text-based and OCR-friendly. Handles the confirmation
+  dialog automatically.
+ios_min: "17.0"
+locale: "en_US"
+tags: ["settings", "apps", "uninstall", "destructive"]
+
+steps:
+  - launch: "Settings"
+  - wait_for: "General"
+  - tap: "General"
+  - wait_for: "iPhone Storage"
+  - tap: "iPhone Storage"
+  - wait_for: "iPhone Storage"
+  - scroll_to: "${APP_NAME}"
+  - tap: "${APP_NAME}"
+  - wait_for: "Delete App"
+  - tap: "Delete App"
+  - wait_for: "Delete App"
+  - tap: "Delete App"
+  - screenshot: "app_deleted"
