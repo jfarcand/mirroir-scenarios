@@ -1,0 +1,12 @@
+name: Vérifier l'écran À propos
+app: Réglages
+description: Navigate through Réglages to Général > Informations and verify device info
+
+steps:
+  - launch: "Reglages"
+  - wait_for: "Général"
+  - tap: "Général"
+  - wait_for: "Informations"
+  - tap: "Informations"
+  - wait_for: "Nom du modèle"
+  - screenshot: "about_screen_fr"
