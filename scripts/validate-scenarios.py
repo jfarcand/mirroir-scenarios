@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# ABOUTME: Validation script for iphone-mirroir-scenarios YAML files.
+# ABOUTME: Validation script for mirroir-scenarios YAML files.
 # ABOUTME: Checks required fields, step types, variable syntax, and metadata formats.
 
 """

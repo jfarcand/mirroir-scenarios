@@ -1,11 +1,11 @@
 ---
-name: iphone-mirroir-scenarios
+name: mirroir-scenarios
 description: Community scenarios for iPhone Mirroring MCP. Provides ready-made YAML scenarios for automating iOS apps via AI-driven screen interaction.
 ---
 
 # iPhone Mirroring Scenarios
 
-This skill provides community-contributed YAML scenarios for [iphone-mirroir-mcp](https://github.com/jfarcand/iphone-mirroir-mcp), the MCP server that gives AI agents control of a real iPhone screen.
+This skill provides community-contributed YAML scenarios for [mirroir-mcp](https://github.com/jfarcand/mirroir-mcp), the MCP server that gives AI agents control of a real iPhone screen.
 
 ## How Scenarios Work
 

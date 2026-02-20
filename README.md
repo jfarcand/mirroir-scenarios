@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jfarcand/iphone-mirroir-mcp/main/website/public/mirroir-wordmark.svg" alt="iphone-mirroir-mcp" width="128" />
+  <img src="https://raw.githubusercontent.com/jfarcand/mirroir-mcp/main/website/public/mirroir-wordmark.svg" alt="mirroir-mcp" width="128" />
 </p>
 
 # mirroir-scenarios
 
-Community marketplace of YAML scenarios for [mirroir-mcp](https://github.com/jfarcand/iphone-mirroir-mcp) — AI-driven automation flows for real iOS devices.
+Community marketplace of YAML scenarios for [mirroir-mcp](https://github.com/jfarcand/mirroir-mcp) — AI-driven automation flows for real iOS devices.
 
 ## What Are Scenarios?
 
@@ -31,15 +31,15 @@ steps:
 ### Claude Code
 
 ```bash
-claude plugin marketplace add jfarcand/iphone-mirroir-scenarios
-claude plugin install scenarios@iphone-mirroir-scenarios
+claude plugin marketplace add jfarcand/mirroir-scenarios
+claude plugin install scenarios@mirroir-scenarios
 ```
 
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin marketplace add jfarcand/iphone-mirroir-scenarios
-copilot plugin install scenarios@iphone-mirroir-scenarios
+copilot plugin marketplace add jfarcand/mirroir-scenarios
+copilot plugin install scenarios@mirroir-scenarios
 ```
 
 Both install the [SKILL.md](plugins/scenarios/skills/scenarios/SKILL.md) which teaches the AI how to interpret and execute scenario steps.
@@ -49,13 +49,13 @@ Both install the [SKILL.md](plugins/scenarios/skills/scenarios/SKILL.md) which t
 Clone into your global scenarios directory:
 
 ```bash
-git clone https://github.com/jfarcand/iphone-mirroir-scenarios ~/.mirroir-mcp/scenarios
+git clone https://github.com/jfarcand/mirroir-scenarios ~/.mirroir-mcp/scenarios
 ```
 
 Or into a project-local directory:
 
 ```bash
-git clone https://github.com/jfarcand/iphone-mirroir-scenarios .mirroir-mcp/scenarios
+git clone https://github.com/jfarcand/mirroir-scenarios .mirroir-mcp/scenarios
 ```
 
 Both paths are scanned recursively by `list_scenarios`.
