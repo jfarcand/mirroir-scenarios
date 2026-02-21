@@ -110,6 +110,26 @@ Scenarios include metadata in the YAML front matter (for `.md` files) or as top-
 
 `${VAR}` placeholders are resolved from environment variables by `get_scenario`. `${VAR:-default}` provides a fallback. If you see unresolved `${VAR}` in the loaded scenario, ask the user for the value before proceeding.
 
+## Auto-Compilation
+
+When you execute a scenario, `get_scenario` appends a compilation status line at the end of the response. Use it to decide whether to compile:
+
+- **`[Not compiled]`** — No compiled version exists. Follow the compilation steps below.
+- **`[Compiled: stale — ...]`** — Source changed since last compile. Recompile using the steps below.
+- **`[Compiled: fresh]`** — Up to date. Skip compilation (no `record_step` calls needed).
+
+### How to compile during execution
+
+1. After each step, call `record_step` with the step index, type, label, and any data you observed:
+   - For **tap** steps: include `tap_x`, `tap_y`, `confidence` from `describe_screen`
+   - For **wait_for** / **assert** steps: include `elapsed_ms` (approximate time waited)
+   - For **scroll_to** steps: include `scroll_count` and `scroll_direction`
+   - For **launch**, **type**, **press_key**, **swipe**, **home**, **open_url**, **shake**, **reset_app**, **set_network**, **screenshot**, **switch_target**: just index, type, and label
+   - For **remember**, **condition**, **repeat** (AI-only steps): just index, type, and label (hints will be null)
+2. After all steps complete successfully, call `save_compiled` with the scenario name
+
+The compiled file (`.compiled.json`) enables `mirroir test` to replay the scenario deterministically without OCR. Your first execution IS the compilation — no separate learning run needed.
+
 ## Adapting to Reality
 
 Real iOS screens differ from what scenarios expect. You should:
