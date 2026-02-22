@@ -1,24 +1,24 @@
 ---
-name: mirroir-scenarios
-description: Community scenarios for iPhone Mirroring MCP. Provides ready-made scenarios (SKILL.md and YAML) for automating iOS apps via AI-driven screen interaction.
+name: mirroir-skills
+description: Community skills for iPhone Mirroring MCP. Provides ready-made skills (SKILL.md and YAML) for automating iOS apps via AI-driven screen interaction.
 ---
 
-# iPhone Mirroring Scenarios
+# iPhone Mirroring Skills
 
-This skill provides community-contributed scenarios for [mirroir-mcp](https://github.com/jfarcand/mirroir-mcp), the MCP server that gives AI agents control of a real iPhone screen.
+This skill provides community-contributed skills for [mirroir-mcp](https://github.com/jfarcand/mirroir-mcp), the MCP server that gives AI agents control of a real iPhone screen.
 
-Scenarios come in two formats:
+Skills come in two formats:
 - **SKILL.md** (`.md`) — natural-language markdown with YAML front matter, the primary format for AI execution
 - **YAML** (`.yaml`) — structured step definitions in `legacy/`, used by the deterministic `mirroir test` and `mirroir compile` CLI tools
 
-## How Scenarios Work
+## How Skills Work
 
-Scenarios describe multi-step iOS automation flows as **intents**, not scripts. Steps like "Tap Email" don't specify coordinates — you (the AI) find the element using `describe_screen` and adapt to the actual screen layout.
+Skills describe multi-step iOS automation flows as **intents**, not scripts. Steps like "Tap Email" don't specify coordinates — you (the AI) find the element using `describe_screen` and adapt to the actual screen layout.
 
-## Executing a Scenario
+## Executing a Skill
 
-1. Use `list_scenarios` to discover available scenarios
-2. Use `get_scenario` with the scenario name to load it (e.g. `get_scenario("apps/slack/send-message")`)
+1. Use `list_skills` to discover available skills
+2. Use `get_skill` with the skill name to load it (e.g. `get_skill("apps/slack/send-message")`)
 3. Read the steps and execute each one using the appropriate MCP tools
 
 ## Step Type Reference
@@ -44,7 +44,7 @@ Scenarios describe multi-step iOS automation flows as **intents**, not scripts. 
 
 ## Conditions
 
-Scenarios can branch using `condition` steps. Call `describe_screen` to evaluate the condition, then execute the matching branch.
+Skills can branch using `condition` steps. Call `describe_screen` to evaluate the condition, then execute the matching branch.
 
 ```yaml
 - condition:
@@ -63,11 +63,11 @@ Scenarios can branch using `condition` steps. Call `describe_screen` to evaluate
 3. If the condition is **false** and `else` is provided, execute the `else` steps
 4. If the condition is **false** and there is no `else`, skip and continue to the next step
 
-Steps inside `then` and `else` are regular steps — including nested `condition` steps if needed. Avoid nesting deeper than 2-3 levels to keep scenarios readable.
+Steps inside `then` and `else` are regular steps — including nested `condition` steps if needed. Avoid nesting deeper than 2-3 levels to keep skills readable.
 
 ## Repeats
 
-Scenarios can loop using `repeat` steps. The AI checks a screen condition before each iteration and stops when the condition fails or `max` iterations are reached.
+Skills can loop using `repeat` steps. The AI checks a screen condition before each iteration and stops when the condition fails or `max` iterations are reached.
 
 ```yaml
 - repeat:
@@ -93,26 +93,26 @@ Scenarios can loop using `repeat` steps. The AI checks a screen condition before
 
 Steps inside `repeat` are regular steps — including `condition` and nested `repeat` if needed.
 
-## Scenario Metadata
+## Skill Metadata
 
-Scenarios include metadata in the YAML front matter (for `.md` files) or as top-level keys (for `.yaml` files):
+Skills include metadata in the YAML front matter (for `.md` files) or as top-level keys (for `.yaml` files):
 
 | Field | Purpose |
 |-------|---------|
 | `version` | Format version (currently `1`). Required in `.md` files. |
-| `name` | Human-readable scenario name. |
+| `name` | Human-readable skill name. |
 | `app` | Target iOS app name. |
-| `ios_min` | Minimum iOS version (e.g. `"17.0"`). Skip the scenario if the device is below this version. |
+| `ios_min` | Minimum iOS version (e.g. `"17.0"`). Skip the skill if the device is below this version. |
 | `locale` | Expected locale (e.g. `"en_US"`, `"fr_CA"`). Adapt UI labels if the phone's locale differs. |
 | `tags` | List of strings for discovery (e.g. `["calendar", "create"]`). Used for filtering, not execution. |
 
 ## Variable Substitution
 
-`${VAR}` placeholders are resolved from environment variables by `get_scenario`. `${VAR:-default}` provides a fallback. If you see unresolved `${VAR}` in the loaded scenario, ask the user for the value before proceeding.
+`${VAR}` placeholders are resolved from environment variables by `get_skill`. `${VAR:-default}` provides a fallback. If you see unresolved `${VAR}` in the loaded skill, ask the user for the value before proceeding.
 
 ## Auto-Compilation
 
-When you execute a scenario, `get_scenario` appends a compilation status line at the end of the response. Use it to decide whether to compile:
+When you execute a skill, `get_skill` appends a compilation status line at the end of the response. Use it to decide whether to compile:
 
 - **`[Not compiled]`** — No compiled version exists. Follow the compilation steps below.
 - **`[Compiled: stale — ...]`** — Source changed since last compile. Recompile using the steps below.
@@ -126,13 +126,13 @@ When you execute a scenario, `get_scenario` appends a compilation status line at
    - For **scroll_to** steps: include `scroll_count` and `scroll_direction`
    - For **launch**, **type**, **press_key**, **swipe**, **home**, **open_url**, **shake**, **reset_app**, **set_network**, **screenshot**, **switch_target**: just index, type, and label
    - For **remember**, **condition**, **repeat** (AI-only steps): just index, type, and label (hints will be null)
-2. After all steps complete successfully, call `save_compiled` with the scenario name
+2. After all steps complete successfully, call `save_compiled` with the skill name
 
-The compiled file (`.compiled.json`) enables `mirroir test` to replay the scenario deterministically without OCR. Your first execution IS the compilation — no separate learning run needed.
+The compiled file (`.compiled.json`) enables `mirroir test` to replay the skill deterministically without OCR. Your first execution IS the compilation — no separate learning run needed.
 
 ## Adapting to Reality
 
-Real iOS screens differ from what scenarios expect. You should:
+Real iOS screens differ from what skills expect. You should:
 
 - **Dismiss unexpected dialogs** (permission prompts, update banners, cookie consent)
 - **Scroll to find off-screen elements** when `describe_screen` doesn't show the target

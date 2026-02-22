@@ -2,13 +2,13 @@
   <img src="https://raw.githubusercontent.com/jfarcand/mirroir-mcp/main/website/public/mirroir-wordmark.svg" alt="mirroir-mcp" width="128" />
 </p>
 
-# mirroir-scenarios
+# mirroir-skills
 
-Community marketplace of scenarios for [mirroir-mcp](https://github.com/jfarcand/mirroir-mcp) — AI-driven automation flows for real iOS devices.
+Community marketplace of skills for [mirroir-mcp](https://github.com/jfarcand/mirroir-mcp) — AI-driven automation flows for real iOS devices.
 
-## What Are Scenarios?
+## What Are Skills?
 
-Scenarios describe multi-step iOS automation as **intents**, not scripts. Steps like "Tap Email" don't hardcode coordinates — the AI finds elements via OCR and adapts to screen layout, localization, and unexpected dialogs.
+Skills describe multi-step iOS automation as **intents**, not scripts. Steps like "Tap Email" don't hardcode coordinates — the AI finds elements via OCR and adapts to screen layout, localization, and unexpected dialogs.
 
 The primary format is **SKILL.md** — markdown files with YAML front matter:
 
@@ -62,41 +62,41 @@ YAML files live in the `legacy/` directory. They are used by the deterministic `
 ### Claude Code
 
 ```bash
-claude plugin marketplace add jfarcand/mirroir-scenarios
-claude plugin install scenarios@mirroir-scenarios
+claude plugin marketplace add jfarcand/mirroir-skills
+claude plugin install skills@mirroir-skills
 ```
 
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin marketplace add jfarcand/mirroir-scenarios
-copilot plugin install scenarios@mirroir-scenarios
+copilot plugin marketplace add jfarcand/mirroir-skills
+copilot plugin install skills@mirroir-skills
 ```
 
-Both install the [SKILL.md](.claude/skills/scenarios/SKILL.md) which teaches the AI how to interpret and execute scenario steps.
+Both install the [SKILL.md](.claude/skills/skills/SKILL.md) which teaches the AI how to interpret and execute skill steps.
 
 ### Manual (all other clients)
 
-Clone into your global scenarios directory:
+Clone into your global skills directory:
 
 ```bash
-git clone https://github.com/jfarcand/mirroir-scenarios ~/.mirroir-mcp/scenarios
+git clone https://github.com/jfarcand/mirroir-skills ~/.mirroir-mcp/skills
 ```
 
 Or into a project-local directory:
 
 ```bash
-git clone https://github.com/jfarcand/mirroir-scenarios .mirroir-mcp/scenarios
+git clone https://github.com/jfarcand/mirroir-skills .mirroir-mcp/skills
 ```
 
-Both paths are scanned recursively by `list_scenarios`.
+Both paths are scanned recursively by `list_skills`.
 
-## Available Scenarios
+## Available Skills
 
 ### Apps
 
-| Scenario | Description |
-|----------|-------------|
+| Skill | Description |
+|-------|-------------|
 | `apps/appstore/install-app` | Search for an app in the App Store and install it |
 | `apps/calendar/create-event` | Create a new calendar event |
 | `apps/calendar/check-today` | Read today's events using `remember` to extract meeting details |
@@ -117,16 +117,16 @@ Both paths are scanned recursively by `list_scenarios`.
 
 ### Testing
 
-| Scenario | Description |
-|----------|-------------|
+| Skill | Description |
+|-------|-------------|
 | `testing/expo-go/login-flow` | Test login with conditional branching for signup vs existing account |
 | `testing/expo-go/shake-debug-menu` | Open React Native debug menu via shake |
 | `testing/expo-go/qa-smoke-pack` | Visual regression test — screenshot key screens and use `remember` to detect UI anomalies |
 
 ### Workflows
 
-| Scenario | Description |
-|----------|-------------|
+| Skill | Description |
+|-------|-------------|
 | `workflows/morning-briefing` | Read weather + calendar, compose and send a morning summary via iMessage |
 | `workflows/commute-eta-notify` | Get ETA from Waze, send it to your boss via Messages |
 | `workflows/standup-autoposter` | Read today's meetings from Calendar, post standup to Slack |
@@ -135,10 +135,10 @@ Workflows demonstrate **cross-app data extraction** — the AI reads dynamic con
 
 ## Variable Substitution
 
-Scenarios use `${VAR}` placeholders resolved from environment variables. Use `${VAR:-default}` for fallback values.
+Skills use `${VAR}` placeholders resolved from environment variables. Use `${VAR:-default}` for fallback values.
 
 ```bash
-# Set credentials for testing scenarios
+# Set credentials for testing skills
 export TEST_EMAIL=user@example.com
 export TEST_PASSWORD=secret
 
@@ -151,7 +151,7 @@ Unresolved variables without defaults are left as-is — the AI will ask for val
 
 ## Conditions
 
-Scenarios support branching with `condition` steps. The AI checks the screen and executes the matching branch:
+Skills support branching with `condition` steps. The AI checks the screen and executes the matching branch:
 
 ```yaml
 steps:
@@ -176,7 +176,7 @@ Steps inside branches are regular steps, including nested conditions. See `apps/
 
 ## Repeats
 
-Scenarios support loops with `repeat` steps. The AI checks a screen condition before each iteration:
+Skills support loops with `repeat` steps. The AI checks a screen condition before each iteration:
 
 ```yaml
 steps:
@@ -201,11 +201,11 @@ See `apps/mail/batch-archive.md` for a full example.
 
 ## Migration from YAML
 
-The `mirroir migrate` command converts YAML scenarios to SKILL.md format:
+The `mirroir migrate` command converts YAML skills to SKILL.md format:
 
 ```bash
 mirroir migrate apps/settings/check-about.yaml           # single file
-mirroir migrate --dir ../iphone-mirroir-scenarios/apps    # entire directory
+mirroir migrate --dir ../iphone-mirroir-skills/apps       # entire directory
 mirroir migrate --dry-run apps/mail/email-triage.yaml     # preview without writing
 ```
 
@@ -213,10 +213,10 @@ Legacy YAML files live in the `legacy/` directory and remain accessible for the 
 
 ## Validation
 
-Run the validation script to check all scenarios for required fields, valid metadata, and correct variable syntax:
+Run the validation script to check all skills for required fields, valid metadata, and correct variable syntax:
 
 ```bash
-python3 scripts/validate-scenarios.py
+python3 scripts/validate-skills.py
 ```
 
 This validates both SKILL.md files (in `apps/`, `testing/`, `workflows/`, `ci/`) and legacy YAML files (in `legacy/`). It runs automatically on push and PR via GitHub Actions.
@@ -230,7 +230,7 @@ The CLA ensures the project can be maintained long-term under a consistent licen
 ### How to contribute
 
 1. Fork this repository
-2. Create your scenario in the appropriate directory:
+2. Create your skill in the appropriate directory:
    - `apps/<app-name>/` for single-app iOS automation
    - `testing/<framework>/` for mobile testing and QA
    - `workflows/` for multi-app sequences that extract data across apps
@@ -245,7 +245,7 @@ The CLA ensures the project can be maintained long-term under a consistent licen
    tags: ["app-name", "category", "action-type"]
    ---
 
-   What this scenario does.
+   What this skill does.
 
    ## Steps
 
@@ -257,7 +257,7 @@ The CLA ensures the project can be maintained long-term under a consistent licen
    6. Screenshot: "result"
    ```
 4. Use `${VAR:-default}` for configurable values, never hardcode credentials
-5. Include at least one "Verify" step so the scenario is self-verifying
+5. Include at least one "Verify" step so the skill is self-verifying
 6. Submit a pull request
 
 ## License

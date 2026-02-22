@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Validate Scenarios
+name: Validate Skills
 on:
   push:
     branches: [main]
@@ -29,4 +29,4 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install pyyaml
-      - run: python3 scripts/validate-scenarios.py
+      - run: python3 scripts/validate-skills.py

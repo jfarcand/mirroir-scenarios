@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# ABOUTME: Validation script for mirroir-scenarios files (SKILL.md and YAML).
+# ABOUTME: Validation script for mirroir-skills files (SKILL.md and YAML).
 # ABOUTME: Checks required fields, step types, variable syntax, metadata formats, and front matter.
 
 """
-Validate all scenario files under apps/, testing/, workflows/, and legacy/.
+Validate all skill files under apps/, testing/, workflows/, and legacy/.
 
 Supports both SKILL.md (.md) files and legacy YAML (.yaml) files.
 Exit 0 if no errors (warnings are OK), exit 1 if any error found.
@@ -40,7 +40,7 @@ try:
 
 except ImportError:
     def load_yaml(path):
-        """Minimal YAML parser using regex — handles the flat structure of scenario files."""
+        """Minimal YAML parser using regex — handles the flat structure of skill files."""
         with open(path, "r", encoding="utf-8") as fh:
             text = fh.read()
 
@@ -117,8 +117,8 @@ MALFORMED_VARIABLE = re.compile(r"\$\{[^A-Za-z_]|\$\{[^}]*[^A-Za-z0-9_:}./-]")
 # Directories to scan for each file type.
 # ---------------------------------------------------------------------------
 
-MD_SCENARIO_DIRS = ["apps", "testing", "workflows", "ci"]
-YAML_SCENARIO_DIRS = ["legacy"]
+MD_SKILL_DIRS = ["apps", "testing", "workflows", "ci"]
+YAML_SKILL_DIRS = ["legacy"]
 
 # ---------------------------------------------------------------------------
 # File discovery.
@@ -126,8 +126,8 @@ YAML_SCENARIO_DIRS = ["legacy"]
 
 
 def find_md_files(root):
-    """Walk MD_SCENARIO_DIRS and yield paths to .md files."""
-    for dirname in MD_SCENARIO_DIRS:
+    """Walk MD_SKILL_DIRS and yield paths to .md files."""
+    for dirname in MD_SKILL_DIRS:
         dirpath = os.path.join(root, dirname)
         if not os.path.isdir(dirpath):
             continue
@@ -138,8 +138,8 @@ def find_md_files(root):
 
 
 def find_yaml_files(root):
-    """Walk YAML_SCENARIO_DIRS and yield paths to .yaml files."""
-    for dirname in YAML_SCENARIO_DIRS:
+    """Walk YAML_SKILL_DIRS and yield paths to .yaml files."""
+    for dirname in YAML_SKILL_DIRS:
         dirpath = os.path.join(root, dirname)
         if not os.path.isdir(dirpath):
             continue
@@ -200,7 +200,7 @@ def parse_front_matter(text):
 
 
 def validate_md_file(filepath, root):
-    """Validate a single SKILL.md scenario file. Returns (errors, warnings) lists."""
+    """Validate a single SKILL.md file. Returns (errors, warnings) lists."""
     errors = []
     warnings = []
     rel = os.path.relpath(filepath, root)
@@ -435,7 +435,7 @@ def validate_steps(steps, rel, prefix, depth=0):
 
 
 def validate_yaml_file(filepath, root):
-    """Validate a single YAML scenario file. Returns (errors, warnings) lists."""
+    """Validate a single YAML skill file. Returns (errors, warnings) lists."""
     errors = []
     warnings = []
     rel = os.path.relpath(filepath, root)
@@ -528,10 +528,10 @@ def main():
 
     total = md_count + yaml_count
     if total == 0:
-        print("No scenario files found.")
+        print("No skill files found.")
         sys.exit(1)
 
-    print(f"Validated {total} scenario files ({md_count} SKILL.md, {yaml_count} YAML).\n")
+    print(f"Validated {total} skill files ({md_count} SKILL.md, {yaml_count} YAML).\n")
 
     for w in all_warnings:
         print(w)

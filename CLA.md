@@ -1,6 +1,6 @@
 # Individual Contributor License Agreement
 
-Thank you for your interest in contributing to iPhone Mirroir Scenarios
+Thank you for your interest in contributing to iPhone Mirroir Skills
 ("the Project"), owned by Jean-Francois Arcand ("the Maintainer").
 
 By submitting a Contribution to this Project, you accept and agree to

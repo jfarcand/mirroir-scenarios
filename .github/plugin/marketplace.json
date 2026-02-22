@@ -1,7 +1,7 @@
 {
-  "name": "mirroir-scenarios",
+  "name": "mirroir-skills",
   "metadata": {
-    "description": "Community scenarios for iPhone Mirroring MCP — ready-made SKILL.md and YAML workflows for automating iOS apps via AI-driven screen interaction.",
+    "description": "Community skills for iPhone Mirroring MCP — ready-made SKILL.md and YAML workflows for automating iOS apps via AI-driven screen interaction.",
     "version": "2.0.0"
   },
   "owner": {
@@ -10,11 +10,11 @@
   },
   "plugins": [
     {
-      "name": "scenarios",
-      "description": "Scenario execution skill — teaches the AI how to interpret and run mirroir-mcp scenarios (SKILL.md and YAML)",
+      "name": "skills",
+      "description": "Skill execution — teaches the AI how to interpret and run mirroir-mcp skills (SKILL.md and YAML)",
       "version": "2.0.0",
       "source": "./",
-      "skills": ["./.claude/skills/scenarios"]
+      "skills": ["./.claude/skills/skills"]
     }
   ]
 }
