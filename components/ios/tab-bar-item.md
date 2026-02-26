@@ -27,9 +27,9 @@ These are global navigation controls, not drill-down navigation.
 
 ## Interaction
 
-- clickable: true
-- click_target: centered_element
-- click_result: navigates
+- clickable: false
+- click_target: none
+- click_result: none
 - back_after_click: false
 
 ## Grouping
