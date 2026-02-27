@@ -20,7 +20,7 @@ Common in Health, Fitness, and dashboard-style apps.
 
 ## Match Rules
 
-- row_has_chevron: true
+- chevron_mode: preferred
 - has_numeric_value: true
 - min_elements: 2
 - max_elements: 3
