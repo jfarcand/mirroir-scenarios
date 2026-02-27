@@ -2,7 +2,7 @@
   "name": "mirroir-skills",
   "metadata": {
     "description": "Community skills for iPhone Mirroring MCP — ready-made SKILL.md and YAML workflows for automating iOS apps via AI-driven screen interaction.",
-    "version": "2.0.0"
+    "version": "0.22.1"
   },
   "owner": {
     "name": "Jean-Francois Arcand",
@@ -12,7 +12,7 @@
     {
       "name": "skills",
       "description": "Skill execution — teaches the AI how to interpret and run mirroir-mcp skills (SKILL.md and YAML)",
-      "version": "2.0.0",
+      "version": "0.22.1",
       "source": "./",
       "skills": ["./.claude/skills/skills"]
     }
