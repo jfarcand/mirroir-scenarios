@@ -1,9 +1,9 @@
 ---
 name: mirroir-skills
-description: Community skills for iPhone Mirroring MCP. Provides ready-made skills (SKILL.md and YAML) for automating iOS apps via AI-driven screen interaction.
+description: Community skills for mirroir-mcp. Provides ready-made skills (SKILL.md and YAML) for automating iOS apps via AI-driven screen interaction.
 ---
 
-# iPhone Mirroring Skills
+# Mirroir Skills
 
 This skill provides community-contributed skills for [mirroir-mcp](https://github.com/jfarcand/mirroir-mcp), the MCP server that gives AI agents control of a real iPhone screen.
 

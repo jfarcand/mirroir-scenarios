@@ -1,7 +1,7 @@
 {
   "name": "mirroir-skills",
   "metadata": {
-    "description": "Community skills for iPhone Mirroring MCP — ready-made SKILL.md and YAML workflows for automating iOS apps via AI-driven screen interaction.",
+    "description": "Community skills for mirroir-mcp — ready-made SKILL.md and YAML workflows for automating iOS apps via AI-driven screen interaction.",
     "version": "0.22.1"
   },
   "owner": {
