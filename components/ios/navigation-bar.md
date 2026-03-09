@@ -32,6 +32,7 @@ The back chevron and action buttons are clickable navigation targets.
 - click_target: first_navigation_element
 - click_result: dismisses
 - back_after_click: true
+- label_rule: longest_text
 
 ## Exploration
 

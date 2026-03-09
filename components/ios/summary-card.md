@@ -33,6 +33,7 @@ Common in Health, Fitness, and dashboard-style apps.
 - click_target: first_navigation_element
 - click_result: pushes_screen
 - back_after_click: true
+- label_rule: longest_text
 
 ## Grouping
 
