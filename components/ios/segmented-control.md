@@ -29,6 +29,7 @@ Tab-like selector with 2-4 short labels for switching content views.
 - click_target: centered_element
 - click_result: switches_context
 - back_after_click: false
+- label_rule: first_text
 
 ## Exploration
 
@@ -41,3 +42,4 @@ Tab-like selector with 2-4 short labels for switching content views.
 - absorbs_same_row: true
 - absorbs_below_within_pt: 0
 - absorb_condition: any
+- split_mode: per_item
