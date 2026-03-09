@@ -29,7 +29,7 @@ Simple list item without chevron that may still be tappable.
 
 - clickable: true
 - click_target: first_navigation_element
-- click_result: navigates
+- click_result: pushes_screen
 - back_after_click: true
 
 ## Grouping

@@ -27,7 +27,7 @@ Standalone button for triggering an action.
 
 - clickable: true
 - click_target: centered_element
-- click_result: navigates
+- click_result: pushes_screen
 - back_after_click: true
 
 ## Grouping

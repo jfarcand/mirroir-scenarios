@@ -26,9 +26,9 @@ Row with a switch/toggle control that should be skipped during exploration.
 
 ## Interaction
 
-- clickable: false
-- click_target: none
-- click_result: toggles
+- clickable: true
+- click_target: first_text
+- click_result: mutates_in_place
 - back_after_click: false
 
 ## Grouping

@@ -27,7 +27,7 @@ Tab-like selector with 2-4 short labels for switching content views.
 
 - clickable: true
 - click_target: centered_element
-- click_result: navigates
+- click_result: switches_context
 - back_after_click: false
 
 ## Grouping

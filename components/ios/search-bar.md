@@ -26,7 +26,7 @@ Search field, typically near the top of the screen.
 
 - clickable: true
 - click_target: centered_element
-- click_result: navigates
+- click_result: mutates_in_place
 - back_after_click: true
 
 ## Grouping

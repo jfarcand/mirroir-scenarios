@@ -31,7 +31,7 @@ Common in Health, Fitness, and dashboard-style apps.
 
 - clickable: true
 - click_target: first_navigation_element
-- click_result: navigates
+- click_result: pushes_screen
 - back_after_click: true
 
 ## Grouping
