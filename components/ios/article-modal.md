@@ -23,7 +23,7 @@ The YOLO icon detector reports the X button as "icon" rather than text.
 
 ## Match Rules
 
-- has_dismiss_icon: true
+- has_dismiss_button: true
 - row_has_chevron: false
 - min_elements: 2
 - max_elements: 3
