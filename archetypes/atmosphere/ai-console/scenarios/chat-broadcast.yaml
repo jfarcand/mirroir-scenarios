@@ -1,0 +1,15 @@
+version: 1
+name: chat-broadcast
+tags: [atmosphere, ai-console, broadcast, must-pass]
+steps:
+  - target:
+      kind: web
+      browsers: [chromium]
+      url: "http://127.0.0.1:${PORT}/atmosphere/console/"
+  - wait_for: "[data-testid=status-label]:has-text('Connected')"
+  - tap: "[data-testid=chat-input]"
+  - type: "${MESSAGE:-broadcast probe}"
+  - tap: "[data-testid=chat-send]"
+  - wait_for: "[data-testid=message-bubble].message--user"
+  - wait_for: "[data-testid=message-bubble].message--assistant"
+  - assert_visible: "[data-testid=message-bubble].message--assistant"

@@ -1,0 +1,15 @@
+version: 1
+name: chat-tool-call
+tags: [atmosphere, ai-console, tool-call, must-pass]
+steps:
+  - target:
+      kind: web
+      browsers: [chromium]
+      url: "http://127.0.0.1:${PORT}/atmosphere/console/"
+  - wait_for: "[data-testid=status-label]:has-text('Connected')"
+  - tap: "[data-testid=chat-input]"
+  - type: "${MESSAGE:-Use a tool to answer: what's 2+2?}"
+  - tap: "[data-testid=chat-send]"
+  - wait_for: "[data-testid=tool-activity]"
+  - wait_for: "[data-testid=message-bubble].message--assistant"
+  - assert_visible: "[data-testid=message-bubble].message--assistant"
