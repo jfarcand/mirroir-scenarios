@@ -13,7 +13,8 @@ obstacle_mode: auto
 
 ## Structure
 
-Social feed app with 5 bottom tabs: Accueil, Recherche, Reels, Boutique, Profil.
+Social feed app with 5 bottom tabs: Accueil, Recherche, Créer, Reels, Profil.
+The middle tab (Créer, "+") opens the story/reel composer — never tap it.
 The top-right corner of Accueil has DM (paper plane) and notifications (heart) icons.
 
 ## Accueil Tab (Home)
@@ -69,6 +70,20 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - Télécharger sur l'App Store
 - Rejoindre avec Instagram
 - /et \d+ autres/
+- Créer
+- Sponsorisé
+- Partager
+- Suivre
+- Ajouter
+- /and \d+ others/
+- Create
+- Sponsored
+- Share
+- Liked by
+- Join Instagram
+- Download on the App Store
+- Not now
+- See translation
 
 ## Deep Tabs
 - Profil
@@ -97,8 +112,8 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - element text: "Café et code"
 - element tab: "Accueil" → accueil
 - element tab: "Recherche" → recherche
+- element tab: "Créer" → creer
 - element tab: "Reels" → reels
-- element tab: "Boutique" → boutique
 - element tab: "Profil" → profil_ig
 
 ## Simulator Screen recherche
@@ -110,8 +125,8 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - element row: "Photographie" → photographie
 - element tab: "Accueil" → accueil
 - element tab: "Recherche" → recherche
+- element tab: "Créer" → creer
 - element tab: "Reels" → reels
-- element tab: "Boutique" → boutique
 - element tab: "Profil" → profil_ig
 
 ## Simulator Screen voyage_ig
@@ -136,31 +151,16 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - element text: "Vidéo en lecture"
 - element tab: "Accueil" → accueil
 - element tab: "Recherche" → recherche
+- element tab: "Créer" → creer
 - element tab: "Reels" → reels
-- element tab: "Boutique" → boutique
 - element tab: "Profil" → profil_ig
 
-## Simulator Screen boutique
-- title: Boutique
-- back: null
-- tab_bar: true
-- element row: "Mode" → mode_shop
-- element row: "Beauté" → beaute_shop
-- element tab: "Accueil" → accueil
-- element tab: "Recherche" → recherche
-- element tab: "Reels" → reels
-- element tab: "Boutique" → boutique
-- element tab: "Profil" → profil_ig
-
-## Simulator Screen mode_shop
-- title: Mode
-- back: boutique
-- element text: "Produits mode"
-
-## Simulator Screen beaute_shop
-- title: Beauté
-- back: boutique
-- element text: "Produits de beauté"
+## Simulator Screen creer
+- title: Nouvelle publication
+- back: accueil
+- element text: "PUBLICATION"
+- element text: "STORY"
+- element text: "REEL"
 
 ## Simulator Screen profil_ig
 - title: Profil
@@ -173,8 +173,8 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - element row: "Paramètres" → parametres_ig
 - element tab: "Accueil" → accueil
 - element tab: "Recherche" → recherche
+- element tab: "Créer" → creer
 - element tab: "Reels" → reels
-- element tab: "Boutique" → boutique
 - element tab: "Profil" → profil_ig
 
 ## Simulator Screen parametres_ig
