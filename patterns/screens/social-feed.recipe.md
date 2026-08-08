@@ -36,6 +36,7 @@ prioritize tab-based navigation over scrolling through posts.
 - backtrack: tap-tab
 - scroll_behavior: infinite
 - depth_pattern: flat
+- calibration_scroll_limit: 2
 
 ## Exploration Hints
 

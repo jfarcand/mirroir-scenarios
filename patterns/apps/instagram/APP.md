@@ -58,6 +58,13 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - Republier
 - Bloquer
 - Signaler
+- Votre story
+- Aimé par
+- J'aime
+- Suggestions
+- Voir la traduction
+- commentaire
+- Abonné
 
 ## Tips
 - Accueil feed is infinite — navigate exclusively via bottom tabs
