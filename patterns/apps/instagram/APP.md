@@ -50,6 +50,11 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - PUBLICATION STORY → tap "X"
 - Tagged in photo prompt → tap "X"
 - Story viewer overlay → tap "X"
+- Nouveau reel → tap "Annuler"
+- Nouvelle publication → tap "Annuler"
+- Importer un audio → tap "Annuler"
+- New reel → tap "Cancel"
+- New post → tap "Cancel"
 
 ## Skip
 - Supprimer
@@ -84,6 +89,10 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - Download on the App Store
 - Not now
 - See translation
+- Suivant
+- /^\d+:\d+$/
+- Importer
+- Next
 
 ## Deep Tabs
 - Profil
