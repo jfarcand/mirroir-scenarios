@@ -65,6 +65,13 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 - Voir la traduction
 - commentaire
 - Abonné
+- Plus tard
+- Télécharger sur l'App Store
+- Rejoindre avec Instagram
+- /et \d+ autres/
+
+## Deep Tabs
+- Profil
 
 ## Tips
 - Accueil feed is infinite — navigate exclusively via bottom tabs
@@ -78,6 +85,7 @@ The top-right corner of Accueil has DM (paper plane) and notifications (heart) i
 
 ## Simulator
 - root: accueil
+- tab_bar_style: icons
 
 ## Simulator Screen accueil
 - title: Accueil
